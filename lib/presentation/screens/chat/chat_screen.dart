@@ -1,7 +1,10 @@
+import 'package:chat_app/domain/entities/message.dart';
+import 'package:chat_app/presentation/providers/chat_provider.dart';
 import 'package:chat_app/presentation/widgets/chat/her_msg_bubble.dart';
 import 'package:chat_app/presentation/widgets/chat/my_msg_bubble.dart';
 import 'package:chat_app/presentation/widgets/shared/msg_field_box.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -19,7 +22,10 @@ class ChatScreen extends StatelessWidget {
                 "https://www.lifeandstylemag.com/wp-content/uploads/2017/06/shutterstock_editorial_5147277az.jpg?resize=1200%2C1200&quality=86&strip=all"),
           ),
         ),
-        title: const Text("Mi amor", style: TextStyle(color: Colors.black),),
+        title: const Text(
+          "Mi amor",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: _ChatView(),
     );
@@ -34,6 +40,8 @@ class _ChatView extends StatelessWidget {
   */
   @override
   Widget build(BuildContext context) {
+    final chatProvider = context.watch<ChatProvider>();
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -41,10 +49,18 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
-              itemCount: 100,
+              itemCount: chatProvider.msgList.length,
               itemBuilder: (context, index) {
-                return (index % 2 == 0) ? const HerMessageBubble() : const MyMessageBubble();
-                
+                final msg = chatProvider.msgList[index];
+
+                return (msg.fromWho == FromWho.hers)
+                    ? HerMessageBubble()
+                    : MyMessageBubble();
+                /*
+                return (index % 2 == 0)
+                    ? const HerMessageBubble()
+                    : const MyMessageBubble();
+                */
               },
             )),
 
