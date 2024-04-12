@@ -6,10 +6,15 @@ class ChatProvider extends ChangeNotifier {
   List<Message> msgList = [
     Message(text: "HABLÁMELO", fromWho: FromWho.me),
     Message(text: "Tú me amas?", fromWho: FromWho.me)
-  
   ];
 
   Future<void> sendMessage(String text) async {
-    //implementar
+    ///este mensaje siempre va a ser mío pq ella no ingresa
+    final newMessage = Message(text: text, fromWho: FromWho.me);
+    msgList.add(newMessage);
+
+    //es lo mismo que setState()
+    //notifica a todos los que escuchan ese cambio con el ChangeNotifier
+    notifyListeners();
   }
 }
