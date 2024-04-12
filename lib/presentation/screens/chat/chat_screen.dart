@@ -1,5 +1,6 @@
 import 'package:chat_app/presentation/widgets/chat/her_msg_bubble.dart';
 import 'package:chat_app/presentation/widgets/chat/my_msg_bubble.dart';
+import 'package:chat_app/presentation/widgets/shared/msg_field_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        //backgroundColor: Colors.pink,
         //leading: const Icon(Icons.heart_broken_outlined),
         leading: const Padding(
           padding: EdgeInsets.all(3.0),
@@ -18,7 +19,7 @@ class ChatScreen extends StatelessWidget {
                 "https://www.lifeandstylemag.com/wp-content/uploads/2017/06/shutterstock_editorial_5147277az.jpg?resize=1200%2C1200&quality=86&strip=all"),
           ),
         ),
-        title: const Text("Mi amor", style: TextStyle(color: Colors.white),),
+        title: const Text("Mi amor", style: TextStyle(color: Colors.black),),
       ),
       body: _ChatView(),
     );
@@ -46,7 +47,9 @@ class _ChatView extends StatelessWidget {
                 
               },
             )),
-            const Text("Mundo")
+
+            ///caja de texto
+            const MessageFieldBox()
           ],
         ),
       ),
