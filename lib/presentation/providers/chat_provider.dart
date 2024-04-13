@@ -1,9 +1,11 @@
+import 'package:chat_app/config/themes/helpers/get_yes_no_answer.dart';
 import 'package:chat_app/domain/entities/message.dart';
 import 'package:flutter/material.dart';
 
 //changenotifier simplemente indica que puede notificar cuando hay cambios
 class ChatProvider extends ChangeNotifier {
   final ScrollController chatScrollController = ScrollController();
+  final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
 
   List<Message> msgList = [
     Message(text: "HABLÁMELO", fromWho: FromWho.me),
@@ -19,10 +21,18 @@ class ChatProvider extends ChangeNotifier {
     final newMessage = Message(text: text, fromWho: FromWho.me);
     msgList.add(newMessage);
 
+    if (text.endsWith("?")) {
+      await herReply();
+    }
+
     //es lo mismo que setState()
     //notifica a todos los que escuchan ese cambio con el ChangeNotifier
     notifyListeners();
     moveScrollToBottom();
+  }
+
+  Future<void> herReply() async {
+    final herMsg = await getYesNoAnswer.getAnswer();
   }
 
   Future<void> moveScrollToBottom() async {

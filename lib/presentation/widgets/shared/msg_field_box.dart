@@ -8,7 +8,7 @@ class MessageFieldBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textController = TextEditingController();
-    final colors = Theme.of(context).colorScheme;
+    //final colors = Theme.of(context).colorScheme;
     final FocusNode focusNode = FocusNode();
 
     final outlineInputBorder = UnderlineInputBorder(
@@ -16,10 +16,12 @@ class MessageFieldBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(40));
 
     final inputDecoration = InputDecoration(
-      hintText: "End your message with ?",
+      hintText: "Ask me closed-ended questions with ? mark",
+      hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
       enabledBorder: outlineInputBorder,
       focusedBorder: outlineInputBorder,
       filled: true,
+      //fillColor: colors.secondary,
       suffixIcon: IconButton(
         icon: const Icon(Icons.send_outlined),
         onPressed: () {

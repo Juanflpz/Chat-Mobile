@@ -23,7 +23,7 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         title: const Text(
-          "Mi amor",
+          "Mi vida",
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -70,6 +70,7 @@ class _ChatView extends StatelessWidget {
             MessageFieldBox(
               onValue: (value) => chatProvider.sendMessage(value),
             ),
+            const SizedBox(height: 10)
           ],
         ),
       ),
