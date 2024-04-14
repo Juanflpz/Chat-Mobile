@@ -3,6 +3,7 @@ import 'package:chat_app/presentation/providers/chat_provider.dart';
 import 'package:chat_app/presentation/widgets/chat/her_msg_bubble.dart';
 import 'package:chat_app/presentation/widgets/chat/my_msg_bubble.dart';
 import 'package:chat_app/presentation/widgets/shared/msg_field_box.dart';
+import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,16 +16,17 @@ class ChatScreen extends StatelessWidget {
       appBar: AppBar(
         //backgroundColor: Colors.pink,
         //leading: const Icon(Icons.heart_broken_outlined),
+        centerTitle: true,
         leading: const Padding(
-          padding: EdgeInsets.all(3.0),
+          padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
                 "https://www.lifeandstylemag.com/wp-content/uploads/2017/06/shutterstock_editorial_5147277az.jpg?resize=1200%2C1200&quality=86&strip=all"),
           ),
         ),
         title: const Text(
-          "Mi vida",
-          style: TextStyle(color: Colors.black),
+          "Darling ${Emojis.beatingHeart}",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
       body: _ChatView(),
@@ -56,7 +58,7 @@ class _ChatView extends StatelessWidget {
                 final msg = chatProvider.msgList[index];
 
                 return (msg.fromWho == FromWho.hers)
-                    ? const HerMessageBubble()
+                    ? HerMessageBubble(message: msg)
                     : MyMessageBubble(message: msg);
                 /*
                 return (index % 2 == 0)

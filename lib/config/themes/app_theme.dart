@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // SE UTILIZA _ PARA HACERLOS PRIVADOS
 const Color _customColor = Color(0xFF49149F);
@@ -21,6 +22,8 @@ class AppTheme {
   //tipo de dato que espera theme
   ThemeData theme() {
     return ThemeData(
-        useMaterial3: true, colorSchemeSeed: _colorThemes[selectedColor]);
+      //textTheme: GoogleFonts.amiri(),
+        useMaterial3: true, colorSchemeSeed: _colorThemes[selectedColor]
+        );
   }
 }
